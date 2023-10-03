@@ -1,0 +1,12 @@
+<!-- app/views/pets/new.html.erb -->
+<div class="container">
+  <h1 class="mt-4">Report a Pet</h1>
+  <%= simple_form_for @pet do |form| %>
+    <%= form.input :name, label: 'Name' %>
+    <%= form.input :species, collection: Pet::SPECIES, label: 'Species' %>
+    <%= form.input :address, label: 'Address' %>
+    <%= form.input :found_on, as: :date, label: 'Found On' %>
+
+    <%= form.button :submit, 'Create Pet', class: 'btn btn-primary' %>
+  <% end %>
+</div>

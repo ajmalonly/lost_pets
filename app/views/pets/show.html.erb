@@ -1,0 +1,19 @@
+<!-- app/views/pets/show.html.erb -->
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header">
+      <h1><%= @pet.name %></h1>
+    </div>
+    <div class="card-body">
+      <p class="card-text">🐇 Species: <%= @pet.species %></p>
+      <p class="card-text">📍 Address: <%= @pet.address %></p>
+      <p class="card-text">📅 Found: <%= @pet.found_days_ago %></p>
+      <%= link_to "Edit", edit_pet_path(@pet), class: "btn btn-primary mr-2" %>
+      <%= link_to "Delete",
+        pet_path(@pet),
+        class: "btn btn-danger",
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }
+      %>
+    </div>
+  </div>
+</div>

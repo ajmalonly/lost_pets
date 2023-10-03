@@ -1,0 +1,15 @@
+
+<div class="container">
+  <h1 class="mt-4">My Pets</h1>
+  <ul class="list-group mt-3">
+    <% @pets.each do |pet| %>
+      <li class="list-group-item">
+        <p class="mb-0">
+          <%= link_to "#{pet.name} - Found #{pet.found_days_ago}", pet, class: "btn btn-link" %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+
