@@ -1,4 +1,3 @@
-# Purpose: Controller for the Pet model
 class PetsController < ApplicationController
   def index
     @pets = Pet.all
@@ -9,11 +8,13 @@ class PetsController < ApplicationController
   end
 
   def new
-    @pet = Pet.new
+    @pet = Pet.new # Needed to instantiate the form_with
   end
 
   def create
-    @pet = Pet.create(pet_params)
+    @pet = Pet.new(pet_params)
+    @pet.save
+    # No need for app/views/restaurants/create.html.erb
     redirect_to pet_path(@pet)
   end
 
@@ -24,18 +25,20 @@ class PetsController < ApplicationController
   def update
     @pet = Pet.find(params[:id])
     @pet.update(pet_params)
+    # No need for apets/update.html.erb
     redirect_to pet_path(@pet)
   end
 
   def destroy
     @pet = Pet.find(params[:id])
     @pet.destroy
-    redirect_to pets_path
+    # No need for app/views/restaurants/destroy.html.erb
+    redirect_to pets_path, status: :see_other
   end
 
   private
 
   def pet_params
-    params.require(:pet).permit(:name, :address, :species, :found_on)
+    params.require(:pet).permit(:name, :species, :address, :found_on)
   end
 end
